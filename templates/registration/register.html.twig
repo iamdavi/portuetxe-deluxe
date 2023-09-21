@@ -1,23 +1,68 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
 
-{% block title %}Register{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Test Acceso Abogacía{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('img/test_abogacia_logo.svg') }}">
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
 
-    <h1>Register</h1>
+<body>
+    <div class="container-fluid">
+        <div id="login-view" class="row justify-content-center align-items-center">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <div class="row text-center">
+                            <div class="col py-4">
+                                <img src="{{ asset('img/test_abogacia_logo.svg') }}" alt="Test de acceso" width="30"
+                                    height="24">
+                                <br>
+                                <span class="icon-title fs-3">PortuetxeDeluxe</span>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h4 class="fw-normal mt-2 mb-3">¡Regístrate!</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                            {% endfor %}
+                            {{ form_errors(registrationForm) }}
 
-    {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                            {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm.email) }}
+                            {{ form_row(registrationForm.plainPassword, { label: 'Password' }) }}
+                            {{ form_row(registrationForm.agreeTerms) }}
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ path('app_register') }}" class="btn px-0">
+                                        <i class="bi bi-chevron-left"></i>
+                                        Volver inicio
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-dark float-end">Register</button>
+                                </div>
+                            </div>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+</html>
