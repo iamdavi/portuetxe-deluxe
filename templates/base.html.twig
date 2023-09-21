@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+    <nav class="navbar navbar-expand-lg p-0">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ path('homepage') }}">
                 <img src="{{ asset('img/test_abogacia_logo.svg') }}" alt="Test de acceso" width="30" height="24">
@@ -29,21 +29,17 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" aria-current="page" href="{{ path('homepage') }}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Años</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Especialidad</a>
+                        <a class="nav-link active fs-5" aria-current="page" href="{{ path('homepage') }}">
+                            PortuetxeDeluxe
+                        </a>
                     </li>
                 </ul>
                 <span class="navbar-text p-0 text-end">
                     {% if app.user %}
                     <div class="dropdown">
-                        <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="btn btn-sm profile-icon" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle fs-3"></i>
-                        </button>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
                             <li><a class="dropdown-item text-danger" href="{{ path('app_logout') }}">Cerrar sesión</a>
