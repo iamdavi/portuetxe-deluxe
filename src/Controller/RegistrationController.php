@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profile;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
@@ -44,7 +45,7 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $em
     ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -61,8 +62,13 @@ class RegistrationController extends AbstractController
             // @TODO -> Comment this to verify user via email
             $user->isVerified(true);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            // Create the profile
+            $profile = new Profile();
+            $profile->setUser($user);
+
+            $em->persist($user);
+            $em->persist($profile);
+            $em->flush();
 
             // @TODO -> Uncomment and configured email DNS to verify account
             // generate a signed url and email it to the user

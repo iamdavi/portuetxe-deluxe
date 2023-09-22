@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+	<div class="row align-items-center">
+		<div class="col">
+			<h1>Editar perfil</h1>
+		</div>
+		<div class="col">
+			<a href="{{ path('profile_view') }}" class="btn btn-dark float-end">
+				<i class="bi bi-arrow-left"></i>
+				Volver
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		{{ form(form) }}
+	</div>
+</div>
+
+
+{% endblock %}
