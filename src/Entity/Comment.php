@@ -8,7 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
-class Comment
+#[ORM\HasLifecycleCallbacks]
+class Comment extends EntityBase
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
