@@ -1,4 +1,23 @@
 <div class="post-list-item">
-	<h3>{{ post.title }}</h3>
-	<p>{{ post.text }}</p>
+	<div class="hstack gap-4">
+		<div class="p-2 align-self-start text-center">
+			<img class="bg-info rounded-circle" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
+				alt="User avatar">
+			<p>
+				{{ post.user.profile.name }}
+			</p>
+		</div>
+		<div class="vr"></div>
+		<div class="p-2">
+			<h3>{{ post.title }}</h3>
+			<p>{{ post.text }}</p>
+		</div>
+		<div class="p-2 ms-auto">
+			<b>
+				<a href="{{ path('post_view', {id: post.id}) }}">
+					<i class="bi bi-eye fw-bold fs-4"></i>
+				</a>
+			</b>
+		</div>
+	</div>
 </div>

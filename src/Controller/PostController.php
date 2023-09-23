@@ -43,4 +43,12 @@ class PostController extends AbstractController
 			'form' => $form
 		]);
 	}
+
+	#[Route('/{id}/ver', name: 'view')]
+	public function viewPostAction(Request $request, Post $post): Response
+	{
+		dump($post);
+		die();
+		return $this->render('base.html.twig');
+	}
 }

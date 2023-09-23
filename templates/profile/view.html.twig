@@ -5,10 +5,13 @@
 	<div class="row">
 		<div class="col-12 col-md-4">
 			<h1>Tu perfil</h1>
-		</div>
-		<div class="col-12 col-md-8">
 			<div class="card">
 				<div class="card-body">
+					<p class="fw-bold mb-0">Avatar:</p>
+					<p>
+						<img class="bg-info rounded-circle"
+							src="{{ asset('uploads/avatars/' ~ profile.avatarFilename) }}" alt="User avatar">
+					</p>
 					<p class="fw-bold mb-0">Nombre:</p>
 					<p>
 						{% if profile.name is null %}
@@ -31,6 +34,8 @@
 					</a>
 				</div>
 			</div>
+		</div>
+		<div class="col-12 col-md-8">
 		</div>
 	</div>
 </div>

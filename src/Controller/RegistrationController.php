@@ -65,6 +65,7 @@ class RegistrationController extends AbstractController
             // Create the profile
             $profile = new Profile();
             $profile->setUser($user);
+            $profile->setAvatarFilename($_ENV['DEFAULT_AVATAR_NAME']);
 
             $em->persist($user);
             $em->persist($profile);

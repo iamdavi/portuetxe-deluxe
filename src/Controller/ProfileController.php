@@ -2,24 +2,29 @@
 
 namespace App\Controller;
 
-use App\Entity\Post;
-use App\Form\PostType;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Form\ProfileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/perfil', name: 'profile_')]
 class ProfileController extends AbstractController
 {
 
 	private EntityManagerInterface $em;
+	private FileUploader $fileUploader;
 
-	public function __construct(EntityManagerInterface $em)
-	{
+	public function __construct(
+		EntityManagerInterface $em,
+		FileUploader $fileUploader
+	) {
 		$this->em = $em;
+		$this->fileUploader = $fileUploader;
 	}
 
 	#[Route('/', name: 'view')]
@@ -42,7 +47,12 @@ class ProfileController extends AbstractController
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$profile = $form->getData();
-
+			/** @var UploadedFile $avatarFile */
+			$avatarFile = $form->get('avatar')->getData();
+			if ($avatarFile) {
+				$avatarFilename = $this->fileUploader->upload($avatarFile);
+				$profile->setAvatarFilename($avatarFilename);
+			}
 			$this->em->flush();
 			return $this->redirectToRoute('profile_view');
 		}
