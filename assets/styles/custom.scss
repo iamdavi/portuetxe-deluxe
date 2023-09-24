@@ -58,6 +58,10 @@ h1 {
 .post-list .vr::after {
 	content: "•";
     position: relative;
-    top: 100%;
+    top: 99%;
     left: -2.5px;
+}
+
+.post-list-user {
+	min-width: 62px;
 }

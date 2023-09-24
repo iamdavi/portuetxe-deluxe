@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Like;
 use App\Entity\Post;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,5 +52,33 @@ class PostController extends AbstractController
 		dump($post);
 		die();
 		return $this->render('base.html.twig');
+	}
+
+	#[Route('/like/{id}', name: 'like')]
+	public function likePostAction(Request $request, Post $post): JsonResponse
+	{
+		$user = $this->getUser();
+
+		$like_exist = $this->em->getRepository(Like::class)->findOneBy([
+			'post' => $post,
+			'user' => $user
+		]);
+
+		if ($like_exist) {
+			return new JsonResponse([
+				'status' => 'error',
+			]);
+		}
+
+		$like = new Like();
+		$like->setUser($user);
+		$like->setPost($post);
+
+		$this->em->persist($like);
+		$this->em->flush();
+
+		return new JsonResponse([
+			'status' => 'success',
+		]);
 	}
 }

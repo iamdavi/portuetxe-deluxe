@@ -1,13 +1,10 @@
 <div class="post-list-item">
 	<div class="hstack gap-4">
-		<div class="p-2 align-self-start text-center">
+		<div class="p-2 align-self-start text-center post-list-user">
 			<div class="vstack">
 				<div>
 					<img class="bg-info rounded-circle" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
 						alt="User avatar">
-					<p class="m-0">
-						{{ post.user.profile.name }}
-					</p>
 				</div>
 				<div class="mt-auto">
 					<p class="m-0 text-muted">
@@ -21,17 +18,25 @@
 		<div class="vr"></div>
 		<div class="p-2">
 			<div class="vstack">
-				<div>
-					<h3>{{ post.title }}</h3>
+				<div class="d-flex align-items-end">
+					<h3 class="mb-0">{{ post.title }}</h3>
+					<span class="ms-3">
+						<small>
+							{{ post.user.profile.name }}
+						</small>
+					</span>
 				</div>
 				<div>
 					<p>{{ post.text }}</p>
 				</div>
 				<div>
 					<div class="hstack gap-4">
-						<div class="like-wrapper">
-							<i class="bi bi-heart"></i>
-							0
+						<div class="like-wrapper" data-like-post="{{ post.id }}">
+							{% set liked = post.id in app.user.likes|map(l => l.post.id) %}
+							<i class="bi bi-heart{% if liked %}-fill text-danger{% endif %}"></i>
+							<span class="like-counter">
+								{{ post.likes|length }}
+							</span>
 						</div>
 						<div class="view-wrapper">
 							<i class="bi bi-eye fw-bold fs-5"></i>
