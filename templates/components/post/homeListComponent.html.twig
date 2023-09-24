@@ -1,21 +1,53 @@
 <div class="post-list-item">
 	<div class="hstack gap-4">
 		<div class="p-2 align-self-start text-center">
-			<img class="bg-info rounded-circle" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
-				alt="User avatar">
-			<p>
-				{{ post.user.profile.name }}
-			</p>
+			<div class="vstack">
+				<div>
+					<img class="bg-info rounded-circle" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
+						alt="User avatar">
+					<p class="m-0">
+						{{ post.user.profile.name }}
+					</p>
+				</div>
+				<div class="mt-auto">
+					<p class="m-0 text-muted">
+						<small>
+							{{ post.createdAt|diffTime }}
+						</small>
+					</p>
+				</div>
+			</div>
 		</div>
 		<div class="vr"></div>
 		<div class="p-2">
-			<h3>{{ post.title }}</h3>
-			<p>{{ post.text }}</p>
+			<div class="vstack">
+				<div>
+					<h3>{{ post.title }}</h3>
+				</div>
+				<div>
+					<p>{{ post.text }}</p>
+				</div>
+				<div>
+					<div class="hstack gap-4">
+						<div class="like-wrapper">
+							<i class="bi bi-heart"></i>
+							0
+						</div>
+						<div class="view-wrapper">
+							<i class="bi bi-eye fw-bold fs-5"></i>
+							0
+						</div>
+						<div class="comment-wrapper">
+							<i class="bi bi-chat"></i>
+							0
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="p-2 ms-auto">
 			<b>
 				<a href="{{ path('post_view', {id: post.id}) }}">
-					<i class="bi bi-eye fw-bold fs-4"></i>
 				</a>
 			</b>
 		</div>
