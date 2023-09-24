@@ -61,4 +61,15 @@ class ProfileController extends AbstractController
 			'form' => $form
 		]);
 	}
+
+	#[Route('/{id}/view', name: 'user_profile')]
+	public function viewUserProfileAction(Request $request): Response
+	{
+		$profile = $this->getUser()->getProfile();
+
+		dump($profile);
+		die();
+
+		return $this->render('profile/edit.html.twig', []);
+	}
 }

@@ -1,60 +1,53 @@
 <div class="post-list-item">
-	<div class="hstack gap-4">
-		<div class="p-2 align-self-start text-center post-list-user">
-			<div class="vstack">
-				<div>
-					<img class="bg-info rounded-circle" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
-						alt="User avatar">
-				</div>
-				<div class="mt-auto">
-					<p class="m-0 text-muted">
-						<small>
-							{{ post.createdAt|diffTime }}
-						</small>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="vr"></div>
-		<div class="p-2">
-			<div class="vstack">
-				<div class="d-flex align-items-end">
-					<h3 class="mb-0">{{ post.title }}</h3>
-					<span class="ms-3">
-						<small>
-							{{ post.user.profile.name }}
-						</small>
-					</span>
-				</div>
-				<div>
-					<p>{{ post.text }}</p>
-				</div>
-				<div>
-					<div class="hstack gap-4">
-						<div class="like-wrapper" data-like-post="{{ post.id }}">
-							{% set liked = post.id in app.user.likes|map(l => l.post.id) %}
-							<i class="bi bi-heart{% if liked %}-fill text-danger{% endif %}"></i>
-							<span class="like-counter">
-								{{ post.likes|length }}
+	<div class="p-2">
+		<div class="vstack">
+			<div class="d-flex">
+				<img class="bg-info rounded-circle me-3" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}"
+					height="34" alt="User avatar">
+				<div class="vstack">
+					<div>
+						<a href="{{ path('profile_user_profile', {id: post.user.id}) }}" class="text-black">
+							<span>
+								{{ post.user.profile.name|default('<<Sin nombre>>') }}
 							</span>
+						</a>
+						-
+						<span>
+							<small class="text-muted">
+								<i>
+									{{ post.createdAt|diffTime }}
+								</i>
+							</small>
+						</span>
+					</div>
+					<a href="{{ path('post_view', {id: post.id}) }}" class="link-underline link-underline-opacity-0 text-black">
+						<div>
+							<p class="mb-0 fw-bold">{{ post.title }}</p>
+							<p>{{ post.text }}</p>
 						</div>
-						<div class="view-wrapper">
-							<i class="bi bi-eye fw-bold fs-5"></i>
-							0
-						</div>
-						<div class="comment-wrapper">
-							<i class="bi bi-chat"></i>
-							0
+					</a>
+					<div>
+						<div class="hstack gap-4">
+							<div class="like-wrapper" data-like-post="{{ post.id }}">
+								{% set liked = post.id in app.user.likes|map(l => l.post.id) %}
+								<i class="bi bi-heart{% if liked %}-fill text-danger{% endif %}"></i>
+								<span class="like-counter">
+									{{ post.likes|length }}
+								</span>
+							</div>
+							<div class="view-wrapper">
+								<i class="bi bi-eye fw-bold fs-5"></i>
+								0
+							</div>
+							<div class="comment-wrapper">
+								<i class="bi bi-chat"></i>
+								0
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="p-2 ms-auto">
-			<b>
-				<a href="{{ path('post_view', {id: post.id}) }}">
-				</a>
-			</b>
-		</div>
 	</div>
+	<hr>
 </div>

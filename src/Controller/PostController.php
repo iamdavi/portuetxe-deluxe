@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Like;
 use App\Entity\Post;
+use App\Form\CommentType;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,9 +51,25 @@ class PostController extends AbstractController
 	#[Route('/{id}/ver', name: 'view')]
 	public function viewPostAction(Request $request, Post $post): Response
 	{
-		dump($post);
-		die();
-		return $this->render('base.html.twig');
+		$comment = new Comment();
+		$comment_form = $this->createForm(CommentType::class, $comment);
+
+		$comment_form->handleRequest($request);
+		if ($comment_form->isSubmitted() && $comment_form->isValid()) {
+
+			$comment = $comment_form->getData();
+			$comment->setPost($this->getUser());
+
+			$this->em->persist($comment);
+			$this->em->flush();
+
+			return $this->redirectToRoute('homepage');
+		}
+
+		return $this->render('post/view.html.twig', [
+			'post' => $post,
+			'comment_form' => $comment_form
+		]);
 	}
 
 	#[Route('/like/{id}', name: 'like')]

@@ -20,6 +20,9 @@ class Comment extends EntityBase
     private ?string $text = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Post $post = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'comments')]
