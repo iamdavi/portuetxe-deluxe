@@ -1,0 +1,41 @@
+:root {
+	--bs-btn-bg: #212529
+}
+
+h1 {
+	color: var(--bs-btn-bg)
+}
+
+.list-group {
+	width: 80%;
+}
+
+.list-group .list-group-item {
+	border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+}
+
+.list-group .list-group-item.active {
+	background-color: var(--bs-btn-bg);
+}
+
+.profile-icon {
+	padding: 0;
+    line-height: 1;
+	border: none;
+}
+
+.profile-icon i {
+	color: #212529 !important;
+}
+
+.dropdown-item:active {
+	background-color: var(--bs-btn-bg);
+	color: white;
+}
+
+.w-95 {
+	width: 95%;
+}
