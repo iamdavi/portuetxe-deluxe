@@ -1,73 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Test Acceso Abogacía{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('img/test_abogacia_logo.svg') }}">
-    {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Test Acceso Abogacía
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="{{ asset('img/test_abogacia_logo.svg') }}">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-    {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-</head>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
 
-<body>
-    <nav class="navbar navbar-expand-lg p-0">
-        <div class="container-fluid w-95">
-            <a class="navbar-brand d-flex align-items-center" href="{{ path('homepage') }}">
-                <img src="{{ asset('img/portuetxe_logo.svg') }}" alt="PortuetxeDeluxe logo" height="45">
-            </a>
-            <button class="navbar-toggler p-1 m-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                </ul>
-                <span class="navbar-text p-0 text-end">
-                    {% if app.user %}
-                    <div class="dropdown">
-                        <a class="btn btn-sm profile-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle fs-3"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ path('profile_view') }}">Perfil</a></li>
-                            <li><a class="dropdown-item text-danger" href="{{ path('app_logout') }}">Cerrar sesión</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {% else %}
-                    <a class="btn" href="{{ path('app_login') }}">
-                        <i class="bi bi-box-arrow-in-right fs-3"></i>
-                    </a>
-                    {% endif %}
-                </span>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-3 col-sm-12 pt-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        <i class="bi bi-card-text"></i>
-                        Posts
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <i class="bi bi-people"></i>
-                        Usuarios
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-9 col-sm-12">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
-    </div>
-</body>
+	<body>
+		<nav class="navbar navbar-expand-lg p-0">
+			<div class="container-fluid w-95">
+				<a class="navbar-brand d-flex align-items-center" href="{{ path('homepage') }}">
+					<img src="{{ asset('img/portuetxe_logo.svg') }}" alt="PortuetxeDeluxe logo" height="45">
+				</a>
+				<button class="navbar-toggler p-1 m-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarText">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+					<span class="navbar-text p-0 text-end">
+						{% if app.user %}
+							<div class="dropdown">
+								<a class="btn btn-sm profile-icon" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-person-circle fs-3"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-end">
+									<li>
+										<a class="dropdown-item" href="{{ path('profile_view') }}">Perfil</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-danger" href="{{ path('app_logout') }}">Cerrar sesión</a>
+									</li>
+								</ul>
+							</div>
+						{% else %}
+							<a class="btn" href="{{ path('app_login') }}">
+								<i class="bi bi-box-arrow-in-right fs-3"></i>
+							</a>
+						{% endif %}
+					</span>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-3 col-sm-12 pt-3">
+					<div class="list-group">
+						<a href="{{ path('homepage') }}" class="list-group-item list-group-item-action active" aria-current="true">
+							<i class="bi bi-card-text"></i>
+							Posts
+						</a>
+						<a href="#" class="list-group-item list-group-item-action">
+							<i class="bi bi-people"></i>
+							Usuarios
+						</a>
+					</div>
+				</div>
+				<div class="col-12 col-md-9 col-sm-12"> {% block body %}{% endblock %}
+					</div>
+				</div>
+			</div>
+		</body>
 
-</html>
+	</html>

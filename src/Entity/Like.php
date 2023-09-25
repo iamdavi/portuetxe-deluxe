@@ -20,8 +20,12 @@ class Like extends EntityBase
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Post $post = null;
+
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Comment $comment = null;
 
     public function getId(): ?int
     {
@@ -48,6 +52,18 @@ class Like extends EntityBase
     public function setPost(?Post $post): static
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comment $comment): static
+    {
+        $this->comment = $comment;
 
         return $this;
     }

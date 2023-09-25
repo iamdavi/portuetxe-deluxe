@@ -23,7 +23,8 @@
         "symfony/validator": "6.3.*",
         "symfony/webpack-encore-bundle": "^2.0",
         "symfony/yaml": "6.3.*",
-        "symfonycasts/verify-email-bundle": "^1.13"
+        "symfonycasts/verify-email-bundle": "^1.13",
+        "twig/extensions": "^1.5"
     },
     "config": {
         "allow-plugins": {
