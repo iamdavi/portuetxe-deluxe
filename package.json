@@ -18,11 +18,7 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress",
-        "heroku-postbuild" : "yarn run encore production"
-    },
-    "engines":{
-        "yarn": "^1.22"
+        "build": "encore production --progress"
     },
     "dependencies": {
         "bootstrap-icons": "^1.10.5",
