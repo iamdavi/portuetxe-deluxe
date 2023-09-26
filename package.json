@@ -22,7 +22,7 @@
         "heroku-postbuild" : "yarn run encore production"
     },
     "engines":{
-        "yarn": "1.22"
+        "yarn": "^1.22"
     },
     "dependencies": {
         "bootstrap-icons": "^1.10.5",
