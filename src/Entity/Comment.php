@@ -8,7 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
-class Comment
+#[ORM\HasLifecycleCallbacks]
+class Comment extends EntityBase
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,10 +20,16 @@ class Comment
     private ?string $text = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Post $post = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'comments')]
     private ?self $replies = null;
+
+    #[ORM\OneToMany(mappedBy: 'comment', targetEntity: Like::class, orphanRemoval: true)]
+    private Collection $likes;
 
     #[ORM\OneToMany(mappedBy: 'replies', targetEntity: self::class)]
     private Collection $comments;
@@ -30,6 +37,7 @@ class Comment
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,6 +105,48 @@ class Comment
             // set the owning side to null (unless already changed)
             if ($comment->getReplies() === $this) {
                 $comment->setReplies(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getComment() === $this) {
+                $like->setComment(null);
             }
         }
 

@@ -1,0 +1,46 @@
+<div>
+	<div class="vstack">
+		<div class="d-flex">
+			<img class="bg-info rounded-circle me-3" src="{{ asset('uploads/avatars/' ~ comment.user.profile.avatarFilename) }}" height="34" alt="User avatar">
+			<div class="vstack">
+				<div>
+					<a href="{{ path('profile_user_profile', {id: comment.user.id}) }}" class="text-black">
+						<span>
+							{{ comment.user.profile.name|default('<<Sin nombre>>') }}
+						</span>
+					</a>
+					-
+					<span>
+						<small class="text-muted">
+							<i>
+								{{ comment.createdAt|diffTime }}
+							</i>
+						</small>
+					</span>
+				</div>
+				<div>
+					<p class="mb-0">{{ comment.text }}</p>
+				</div>
+				<div>
+					<div class="hstack gap-4">
+						<div class="like-wrapper" data-like-comment="{{ comment.id }}">
+							{% set liked = comment.id in app.user.likes|map(l => l.comment.id|default('')) %}
+							<i class="bi bi-heart{% if liked %}-fill text-danger{% endif %}"></i>
+							<span class="like-counter">
+								{{ comment.likes|length }}
+							</span>
+						</div>
+						<div class="view-wrapper">
+							<i class="bi bi-eye fw-bold fs-5"></i>
+							0
+						</div>
+						<div class="comment-wrapper">
+							<i class="bi bi-chat"></i>
+							0
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

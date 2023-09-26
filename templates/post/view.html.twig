@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-12">
+			<h1>Post</h1>
+		</div>
+		<div class="col-12">
+
+			<div class="vstack">
+				<div class="d-flex">
+					<img class="bg-info rounded-circle me-3" src="{{ asset('uploads/avatars/' ~ post.user.profile.avatarFilename) }}" height="34" alt="User avatar">
+					<div class="vstack">
+						<div>
+							<a href="{{ path('profile_user_profile', {id: post.user.id}) }}" class="text-black">
+								<span>
+									{{ post.user.profile.name|default('<<Sin nombre>>') }}
+								</span>
+							</a>
+							-
+							<span>
+								<small class="text-muted">
+									<i>
+										{{ post.createdAt|diffTime }}
+									</i>
+								</small>
+							</span>
+						</div>
+						<div>
+							<p class="mb-0 fw-bold">{{ post.title }}</p>
+							<p>{{ post.text }}</p>
+						</div>
+						<div class="vstack gap-3">
+							<div>
+								<h4>Commentarios</h4>
+								<hr class="mt-0">
+								{{ form_start(comment_form) }}
+								<div class="d-flex">
+									{{ form_row(comment_form.text) }}
+									{{ form_row(comment_form.save) }}
+								</div>
+								{{ form_end(comment_form) }}
+								<hr>
+							</div>
+							{% for comment in post.comments %}
+								{% include "components/post/commentListComponent.html.twig" %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -10,6 +10,12 @@ h1 {
 	width: 80%;
 }
 
+@media (max-width: 766px) { 
+	.list-group {
+		width: 100%;
+	}
+}
+
 .list-group .list-group-item {
 	border: none;
     border-radius: 6px;
@@ -38,4 +44,24 @@ h1 {
 
 .w-95 {
 	width: 95%;
+}
+
+.logo-long {
+	scale: 4;
+}
+
+.post-list .vr {
+	background-color: #212529;
+    opacity: .8;
+}
+
+.post-list .vr::after {
+	content: "•";
+    position: relative;
+    top: 99%;
+    left: -2.5px;
+}
+
+.post-list-user {
+	min-width: 62px;
 }

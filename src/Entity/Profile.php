@@ -6,7 +6,8 @@ use App\Repository\ProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
-class Profile
+#[ORM\HasLifecycleCallbacks]
+class Profile extends EntityBase
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,6 +19,9 @@ class Profile
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $last_name = null;
+
+    #[ORM\Column(type: 'string')]
+    private string $avatarFilename;
 
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -60,6 +64,18 @@ class Profile
     public function setUser(User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAvatarFilename(): string
+    {
+        return $this->avatarFilename;
+    }
+
+    public function setAvatarFilename(string $avatarFilename): self
+    {
+        $this->avatarFilename = $avatarFilename;
 
         return $this;
     }
