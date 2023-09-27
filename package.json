@@ -15,10 +15,9 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "dev-server": "encore dev-server",
-        "dev": "encore dev",
-        "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "start": "php bin/console server:run",
+        "build": "yarn build",
+        "worker": "node worker.js"
     },
     "engines": {
         "node": "19.6.0",
