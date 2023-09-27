@@ -1,2 +1,2 @@
-web: heroku-php-apache2-node public/ 
+web: heroku-php-apache2 public/ 
 worker: yarn run worker
