@@ -21,7 +21,10 @@ class HomeController extends AbstractController
 	#[Route('/', name: 'homepage')]
 	public function list(): Response
 	{
-		$posts = $this->em->getRepository(Post::class)->findAll();
+		$posts = $this->em->getRepository(Post::class)->findBy(
+			[],
+			['createdAt' => 'DESC']
+		);
 		return $this->render('home/index.html.twig', [
 			'posts' => $posts
 		]);
