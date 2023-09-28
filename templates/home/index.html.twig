@@ -1,26 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | Inicio{% endblock %}
+{% block title %}
+	{{ parent() }}
+	| Inicio
+{% endblock %}
 
 {% block body %}
 
-<div class="row align-items-center">
-	<div class="col">
-		<h1>Últimos posts</h1>
+	<div class="row align-items-center">
+		<div class="col">
+			<h1>Últimos posts</h1>
+		</div>
+		<div class="col">
+			<a href="{{ path('post_new') }}" class="btn btn-dark float-end">
+				<i class="bi bi-plus-lg"></i>
+				Nuevo post
+			</a>
+		</div>
 	</div>
-	<div class="col">
-		<a href="{{ path('post_new') }}" class="btn btn-dark float-end">
-			<i class="bi bi-plus-lg"></i>
-			Nuevo post
-		</a>
+	<div class="row">
+		{% include "components/modal/commentModal.html.twig" %}
+		<div class="vstack post-list">
+			{% for post in posts %}
+				{% include "components/post/homeListComponent.html.twig" %}
+			{% endfor %}
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="vstack post-list">
-		{% for post in posts %}
-		{% include "components/post/homeListComponent.html.twig" %}
-		{% endfor %}
-	</div>
-</div>
 
 {% endblock %}

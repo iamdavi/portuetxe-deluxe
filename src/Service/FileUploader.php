@@ -17,7 +17,6 @@ class FileUploader
 	public function upload(UploadedFile $file): string
 	{
 		$originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-		dump($originalFilename);
 		$safeFilename = $this->slugger->slug($originalFilename);
 		$fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 

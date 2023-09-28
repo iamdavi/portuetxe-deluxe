@@ -25,7 +25,7 @@ class Post extends EntityBase
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, cascade: ['remove'])]
     private Collection $comments;
 
     #[ORM\ManyToOne(inversedBy: 'posts', targetEntity: User::class, fetch: 'EAGER')]

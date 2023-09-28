@@ -36,6 +36,9 @@ class AppExtension extends AbstractExtension
 		} else if ($mins > 0) {
 			return $mins . 'min.';
 		} else {
+			if ($sec < 30) {
+				return "Ahora mismo";
+			}
 			return $sec . 's.';
 		}
 	}
