@@ -25,6 +25,7 @@ class HomeController extends AbstractController
 			[],
 			['id' => 'DESC']
 		);
+
 		return $this->render('home/index.html.twig', [
 			'posts' => $posts
 		]);
