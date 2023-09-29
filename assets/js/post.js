@@ -2,19 +2,11 @@ export default class Post {
   baseUrl;
   likePostButtons;
   likeCommentButtons;
-  commentCommentButtons;
-
-  formPostCommentPostInput;
 
   constructor() {
     this.baseUrl = "localhost:8000";
 
-    this.formPostCommentPostInput = document.querySelector(
-      "form[name='comment'] #comment_post"
-    );
-
     this.likePostButtons = document.querySelectorAll("[data-like-post]");
-    this.commentPostButtons = document.querySelectorAll("[data-comment-post]");
     this.likeCommentButtons = document.querySelectorAll("[data-like-comment]");
 
     this.addEvents();
@@ -22,36 +14,22 @@ export default class Post {
 
   addEvents() {
     this.postLikeButtonHandler();
-    this.commentPostButtonHandler();
     this.commentLikeButtonHandler();
-  }
-
-  commentPostButtonHandler() {
-    for (let commentPostButton of this.commentPostButtons) {
-      const postId = commentPostButton.dataset.commentPost;
-      this.formPostCommentPostInput.value = postId;
-    }
   }
 
   postLikeButtonHandler() {
     for (let likePostButton of this.likePostButtons) {
-      likePostButton.addEventListener(
-        "click",
-        function (e) {
-          this.likeButtonCall(e, "/posts/like/", "post");
-        }.bind(this)
-      );
+      likePostButton.addEventListener("click", function (e) {
+        this.likeButtonCall(e, '/posts/like/', 'post')
+      }.bind(this));
     }
   }
 
   commentLikeButtonHandler() {
     for (let likeCommentButton of this.likeCommentButtons) {
-      likeCommentButton.addEventListener(
-        "click",
-        function (e) {
-          this.likeButtonCall(e, "/comments/like/", "comment");
-        }.bind(this)
-      );
+      likeCommentButton.addEventListener("click", function (e) {
+        this.likeButtonCall(e, '/comments/like/', 'comment')
+      }.bind(this));
     }
   }
 
@@ -65,9 +43,9 @@ export default class Post {
     }
 
     const datasetPropertyByType = {
-      comment: "likeComment",
-      post: "likePost",
-    };
+      'comment': 'likeComment',
+      'post': 'likePost'
+    }
 
     const objectId = target.dataset[datasetPropertyByType[type]];
     const req = await fetch(url + objectId, {
