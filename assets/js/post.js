@@ -18,7 +18,6 @@ export default class Post {
     );
 
     this.likePostButtons = document.querySelectorAll("[data-like-post]");
-    this.commentPostButtons = document.querySelectorAll("[data-comment-post]");
     this.likeCommentButtons = document.querySelectorAll("[data-like-comment]");
 
     this.addEvents();
@@ -26,7 +25,6 @@ export default class Post {
 
   addEvents() {
     this.postLikeButtonHandler();
-    this.commentPostButtonHandler();
     this.commentLikeButtonHandler();
   }
 
