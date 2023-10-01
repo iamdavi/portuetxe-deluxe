@@ -40,7 +40,9 @@
 							</div>
 							<div class="comment-wrapper" data-bs-toggle="modal" data-bs-target="#commentModal" data-comment-post="{{ post.id }}">
 								<i class="bi bi-chat"></i>
-								{{ post.comments|length }}
+								<span class="comment-counter">
+									{{ post.comments|length }}
+								</span>
 							</div>
 						</div>
 					</div>
