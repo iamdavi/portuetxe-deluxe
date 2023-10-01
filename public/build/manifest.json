@@ -1,11 +1,13 @@
 {
-  "build/app.css": "/build/app.1dd6a76a.css",
-  "build/app.js": "/build/app.428192ff.js",
-  "build/post.js": "/build/post.d005bd13.js",
-  "build/runtime.js": "/build/runtime.9a71ee5d.js",
-  "build/34.ab8ce98b.js": "/build/34.ab8ce98b.js",
-  "build/723.4dddaaf1.css": "/build/723.4dddaaf1.css",
-  "build/723.802e1b65.js": "/build/723.802e1b65.js",
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/post.js": "/build/post.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-ca88ed.js": "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-ca88ed.js",
+  "build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js-no-6ccba5.css": "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js-no-6ccba5.css",
+  "build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js-no-6ccba5.js": "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js-no-6ccba5.js",
+  "build/assets_js_post_js.js": "/build/assets_js_post_js.js",
   "build/fonts/bootstrap-icons.woff?": "/build/fonts/bootstrap-icons.4753c5ba.woff",
-  "build/fonts/bootstrap-icons.woff2?": "/build/fonts/bootstrap-icons.6d63d050.woff2"
+  "build/fonts/bootstrap-icons.woff2?": "/build/fonts/bootstrap-icons.6d63d050.woff2",
+  "build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-34f045.js": "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-34f045.js"
 }
