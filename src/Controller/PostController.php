@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -44,6 +45,29 @@ class PostController extends AbstractController
 		}
 
 		return $this->render('post/new.html.twig', [
+			'form' => $form
+		]);
+	}
+
+	#[Route('/{id}/edit', name: 'edit')]
+	#[IsGranted('edit', 'post')]
+	public function editPostAction(Request $request, Post $post): Response
+	{
+		$form = $this->createForm(PostType::class, $post);
+
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			if ($form->get('delete')->isClicked()) {
+				$this->em->remove($post);
+			} else {
+				$this->em->persist($post);
+			}
+			$this->em->flush();
+
+			return $this->redirectToRoute('homepage');
+		}
+
+		return $this->render('post/edit.html.twig', [
 			'form' => $form
 		]);
 	}

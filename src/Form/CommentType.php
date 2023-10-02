@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Comment;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,12 +32,18 @@ class CommentType extends AbstractType
                     'class' => 'd-flex align-items-center ps-2'
                 ]
             ]);
+        if ($options['addPost']) {
+            $builder->add('post', HiddenType::class, [
+                'mapped' => false
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Comment::class
+            'data_class' => Comment::class,
+            'addPost' => false
         ]);
     }
 }

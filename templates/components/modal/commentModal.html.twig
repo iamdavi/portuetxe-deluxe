@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Añade comentario</h1>
+				<button id="dissmissCommentModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			{{ form_start(form) }}
+			<div class="modal-body">
+				{{ form_row(form.text) }}
+				{{ form_row(form.post) }}
+			</div>
+			<div class="modal-footer">
+				{{ form_row(form.save) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>

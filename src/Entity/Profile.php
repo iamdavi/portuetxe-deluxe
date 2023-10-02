@@ -17,9 +17,6 @@ class Profile extends EntityBase
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $last_name = null;
-
     #[ORM\Column(type: 'string')]
     private string $avatarFilename;
 
@@ -40,18 +37,6 @@ class Profile extends EntityBase
     public function setName(?string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->last_name;
-    }
-
-    public function setLastName(?string $last_name): static
-    {
-        $this->last_name = $last_name;
 
         return $this;
     }

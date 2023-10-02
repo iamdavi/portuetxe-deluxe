@@ -34,9 +34,6 @@ class ProfileType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nombre'
             ])
-            ->add('last_name', TextType::class, [
-                'label' => 'Apellidos'
-            ])
             ->add('save', SubmitType::class, [
                 'label' => 'Guardar',
                 'attr' => [

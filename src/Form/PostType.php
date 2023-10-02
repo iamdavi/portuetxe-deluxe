@@ -27,6 +27,15 @@ class PostType extends AbstractType
                     'class' => 'btn btn-dark float-end'
                 ]
             ]);
+
+        if ($builder->getData()->getId()) {
+            $builder->add('delete', SubmitType::class, [
+                'label' => 'Eliminar',
+                'attr' => [
+                    'class' => 'btn btn-outline-danger'
+                ]
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
