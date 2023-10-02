@@ -4,20 +4,30 @@ export default class Post {
   likeCommentButtons;
   commentCommentButtons;
 
+<<<<<<< HEAD
   currentPostCommentCount;
 
+=======
+>>>>>>> develop
   formPostCommentPostInput;
 
   constructor() {
     this.baseUrl = "localhost:8000";
 
+<<<<<<< HEAD
     this.commentForm = document.querySelector("form[name='comment']");
 
+=======
+>>>>>>> develop
     this.formPostCommentPostInput = document.querySelector(
       "form[name='comment'] #comment_post"
     );
 
     this.likePostButtons = document.querySelectorAll("[data-like-post]");
+<<<<<<< HEAD
+=======
+    this.commentPostButtons = document.querySelectorAll("[data-comment-post]");
+>>>>>>> develop
     this.likeCommentButtons = document.querySelectorAll("[data-like-comment]");
 
     this.addEvents();
@@ -25,11 +35,16 @@ export default class Post {
 
   addEvents() {
     this.postLikeButtonHandler();
+<<<<<<< HEAD
+=======
+    this.commentPostButtonHandler();
+>>>>>>> develop
     this.commentLikeButtonHandler();
   }
 
   commentPostButtonHandler() {
     for (let commentPostButton of this.commentPostButtons) {
+<<<<<<< HEAD
       commentPostButton.addEventListener(
         "click",
         function (e) {
@@ -69,6 +84,11 @@ export default class Post {
         }
       }.bind(this)
     );
+=======
+      const postId = commentPostButton.dataset.commentPost;
+      this.formPostCommentPostInput.value = postId;
+    }
+>>>>>>> develop
   }
 
   postLikeButtonHandler() {
