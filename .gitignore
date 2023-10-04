@@ -10,5 +10,7 @@ var/logs/*
 node_modules/
 # yarn-lock.json
 
+composer.lock
+yarn.lock
 # Heroku specific
 # public/build
