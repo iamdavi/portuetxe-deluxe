@@ -46,7 +46,7 @@ class CommentController extends AbstractController
 		$this->em->flush();
 
 		return new JsonResponse([
-			'status' => 'success',
+			'status' => 'ok',
 		]);
 	}
 }
