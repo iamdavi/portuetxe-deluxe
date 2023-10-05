@@ -41,7 +41,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/registro', name: 'app_register')]
+    // #[Route('/registro', name: 'app_register')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -92,7 +92,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/verificar/email', name: 'app_verify_email')]
+    // #[Route('/verificar/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -103,13 +103,13 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirectToRoute('app_register');
+            // return $this->redirectToRoute('app_register');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        // return $this->redirectToRoute('app_register');
     }
 
     #[Route('/logout', name: 'app_logout', methods: ['GET'])]

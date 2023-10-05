@@ -33,6 +33,7 @@ export default class Post {
 
   commentPostButtonHandler() {
     for (let commentPostButton of this.commentPostButtons) {
+      console.log('frki');
       commentPostButton.addEventListener(
         "click",
         function (e) {
