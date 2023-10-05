@@ -51,6 +51,10 @@ class ProfileController extends AbstractController
 			$avatarFile = $form->get('avatar')->getData();
 			if ($avatarFile) {
 				$avatarFilename = $this->fileUploader->upload($avatarFile);
+				if (get_class($avatarFilename) == FileException::class) {
+					var_dump($avatarFilename);
+					return new Response('error fileupload');
+				}
 				$profile->setAvatarFilename($avatarFilename);
 			}
 			$this->em->flush();
