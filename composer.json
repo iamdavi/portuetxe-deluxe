@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
+        "symfony/apache-pack": "^1.0",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
@@ -17,14 +18,17 @@
         "symfony/framework-bundle": "6.3.*",
         "symfony/google-mailer": "6.3.*",
         "symfony/mailer": "6.3.*",
+        "symfony/maker-bundle": "^1.51",
         "symfony/runtime": "6.3.*",
         "symfony/security-bundle": "6.3.*",
         "symfony/twig-bundle": "6.3.*",
         "symfony/validator": "6.3.*",
-        "symfony/webpack-encore-bundle": "^2.0",
+        "symfony/webpack-encore-bundle": "*",
         "symfony/yaml": "6.3.*",
         "symfonycasts/verify-email-bundle": "^1.13",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "twig/extra-bundle": "*",
+        "twig/string-extra": "^3.7"
     },
     "config": {
         "allow-plugins": {
@@ -75,7 +79,6 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.50",
         "symfony/stopwatch": "6.3.*",
         "symfony/web-profiler-bundle": "6.3.*"
     }

@@ -2,9 +2,20 @@ export default class Post {
   baseUrl;
   likePostButtons;
   likeCommentButtons;
+  commentCommentButtons;
+
+  currentPostCommentCount;
+
+  formPostCommentPostInput;
 
   constructor() {
     this.baseUrl = "localhost:8000";
+
+    this.commentForm = document.querySelector("form[name='comment']");
+
+    this.formPostCommentPostInput = document.querySelector(
+      "form[name='comment'] #comment_post"
+    );
 
     this.likePostButtons = document.querySelectorAll("[data-like-post]");
     this.likeCommentButtons = document.querySelectorAll("[data-like-comment]");
@@ -17,19 +28,68 @@ export default class Post {
     this.commentLikeButtonHandler();
   }
 
+  commentPostButtonHandler() {
+    for (let commentPostButton of this.commentPostButtons) {
+      commentPostButton.addEventListener(
+        "click",
+        function (e) {
+          const postId = e.target.dataset.commentPost;
+          this.formPostCommentPostInput.value = postId;
+          this.currentPostCommentCount = e.target;
+        }.bind(this)
+      );
+    }
+
+    this.commentForm.addEventListener(
+      "submit",
+      async function (e) {
+        e.preventDefault();
+        const payload = new FormData(e.target);
+        const req = await fetch("/", {
+          method: "POST",
+          body: payload,
+        });
+        const res = await req.json();
+        if (res.status == "success") {
+          const dismissModalButton = document.getElementById(
+            "dissmissCommentModal"
+          );
+          // Dismiss modal and reset comment text
+          dismissModalButton.dispatchEvent(new Event("click"));
+          document.getElementById("comment_text").value = "";
+          // Show toast
+          const toast = document.getElementById("commentAddedPost");
+          toast.classList.add("show");
+          // Update post comment
+          const commentCounterWrapper = this.currentPostCommentCount
+            .closest(".comment-wrapper")
+            .querySelector(".comment-counter");
+          commentCounterWrapper.innerText =
+            parseInt(commentCounterWrapper.innerText) + 1;
+        }
+      }.bind(this)
+    );
+  }
+
   postLikeButtonHandler() {
     for (let likePostButton of this.likePostButtons) {
-      likePostButton.addEventListener("click", function (e) {
-        this.likeButtonCall(e, '/posts/like/', 'post')
-      }.bind(this));
+      likePostButton.addEventListener(
+        "click",
+        function (e) {
+          this.likeButtonCall(e, "/posts/like/", "post");
+        }.bind(this)
+      );
     }
   }
 
   commentLikeButtonHandler() {
     for (let likeCommentButton of this.likeCommentButtons) {
-      likeCommentButton.addEventListener("click", function (e) {
-        this.likeButtonCall(e, '/comments/like/', 'comment')
-      }.bind(this));
+      likeCommentButton.addEventListener(
+        "click",
+        function (e) {
+          this.likeButtonCall(e, "/comments/like/", "comment");
+        }.bind(this)
+      );
     }
   }
 
@@ -43,9 +103,9 @@ export default class Post {
     }
 
     const datasetPropertyByType = {
-      'comment': 'likeComment',
-      'post': 'likePost'
-    }
+      comment: "likeComment",
+      post: "likePost",
+    };
 
     const objectId = target.dataset[datasetPropertyByType[type]];
     const req = await fetch(url + objectId, {

@@ -52,19 +52,19 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
-            // @TODO -> Comment this to verify user via email
             $user->isVerified(true);
 
             // Create the profile
+            $username = $form->get('username')->getData();
             $profile = new Profile();
             $profile->setUser($user);
+            $profile->setName($username);
             $profile->setAvatarFilename($_ENV['DEFAULT_AVATAR_NAME']);
 
             $em->persist($user);
