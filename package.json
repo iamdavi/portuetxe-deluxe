@@ -18,8 +18,11 @@
     "private": true,
     "scripts": {
         "start": "php bin/console server:run",
-        "build": "yarn build",
-        "worker": "node worker.js"
+        "worker": "node worker.js",
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
     },
     "engines": {
         "node": ">=19.6.0",

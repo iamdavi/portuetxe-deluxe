@@ -8,6 +8,7 @@ var/logs/*
 
 # Yarn specific
 node_modules/
+public/build/
 # yarn-lock.json
 
 composer.lock

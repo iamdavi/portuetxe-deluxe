@@ -13,6 +13,8 @@ export default class Post {
 
     this.commentForm = document.querySelector("form[name='comment']");
 
+    this.commentPostButtons = document.querySelectorAll('.comment-wrapper')
+
     this.formPostCommentPostInput = document.querySelector(
       "form[name='comment'] #comment_post"
     );
@@ -26,6 +28,7 @@ export default class Post {
   addEvents() {
     this.postLikeButtonHandler();
     this.commentLikeButtonHandler();
+    this.commentPostButtonHandler();
   }
 
   commentPostButtonHandler() {
@@ -33,9 +36,9 @@ export default class Post {
       commentPostButton.addEventListener(
         "click",
         function (e) {
-          const postId = e.target.dataset.commentPost;
+          const postId = e.currentTarget.dataset.commentPost;
           this.formPostCommentPostInput.value = postId;
-          this.currentPostCommentCount = e.target;
+          this.currentPostCommentCount = e.currentTarget;
         }.bind(this)
       );
     }
@@ -62,7 +65,6 @@ export default class Post {
           toast.classList.add("show");
           // Update post comment
           const commentCounterWrapper = this.currentPostCommentCount
-            .closest(".comment-wrapper")
             .querySelector(".comment-counter");
           commentCounterWrapper.innerText =
             parseInt(commentCounterWrapper.innerText) + 1;
